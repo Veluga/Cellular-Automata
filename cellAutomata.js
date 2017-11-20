@@ -17,8 +17,8 @@ const ruleArray = [
     colorChange: ''}
 ]
 
-// To-Do: Should be 
-const numCells = 5000;
+// To-Do: Should be dependent on user input
+const numCells = 5041;
 const cellColours = []
 
 const colorTranslation = ['white', 'black']
@@ -41,7 +41,7 @@ function setInitialColors() {
     }
 }
 
-// 
+// Generates a DIV element for every cell
 function generateCells() {
     let cellSpace = document.getElementById('cellSpace')
     for (let i = 0; i < numCells; i++) {
@@ -49,12 +49,13 @@ function generateCells() {
         newCell.className = 'cellular-automaton';
         newCell.id = 'cell' + i;
         cellSpace.appendChild(newCell);
-        if (i%80 === 0 && i > 0 || i === 79) {
+        if (i%80 === 0 && i > 0) {
             let breakChar = document.createElement('BR')
             cellSpace.appendChild(breakChar)} 
     }
 }
 
+// Takes cell index as input, determines its current state in form of three bit state (e.g. 001 - white left Neighb, white cell, black right Neighb)
 function determineStateBitstring(index) {
     let stateString = '';
 
@@ -70,7 +71,8 @@ function determineStateBitstring(index) {
 }
 
 (function main() {
-    translateDecimalToRuleString(210);
+    // Should be user input
+    translateDecimalToRuleString(90);
     generateCells();
     setInitialColors();
 
