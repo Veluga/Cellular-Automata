@@ -20,6 +20,7 @@ const ruleArray = [
 // To-Do: Should be dependent on user input
 const numCells = 5041;
 let seed = 12;
+let speed = 1000;
 let cellColours = []
 let shouldExit = false;
 let cellColoursBuffer = []
@@ -92,7 +93,7 @@ function main() {
         if (shouldExit) {
             clearInterval(redraw);
         }
-    }, 1000)
+    }, speed)
     
 };
 
