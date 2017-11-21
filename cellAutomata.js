@@ -19,8 +19,12 @@ const ruleArray = [
 
 // To-Do: Should be dependent on user input
 const numCells = 5041;
-const cellColours = []
+let seed = 12;
+let cellColours = []
+let shouldExit = false;
+let cellColoursBuffer = []
 
+// '0' (index 0) is white, '1' (index 1) is black
 const colorTranslation = ['white', 'black']
 
 // Rule specified by decimal in range 0 - 255 (8 bit), translation to binary representation
@@ -66,23 +70,30 @@ function determineStateBitstring(index) {
     
     if(index === (cellColours.length-1)) {stateString += cellColours[0]}
     else {stateString += cellColours[index+1]}
-
     return stateString;
 }
 
-(function main() {
+function main() {
     // Should be user input
-    translateDecimalToRuleString(90);
-    generateCells();
+    translateDecimalToRuleString(seed);
+    if(!cellColours[0]) {
+        generateCells();
+    }
     setInitialColors();
 
     const ruleArrayReversed = ruleArray.reverse();
-
-    setInterval(function() {
+    console.log(ruleArrayReversed)
+    let redraw = setInterval(function() {
         for (let i = 0, len = cellColours.length; i < len; i++) {
             document.getElementById('cell' + i).style.backgroundColor = colorTranslation[cellColours[i]];
-            cellColours[i] = ruleArrayReversed[parseInt(determineStateBitstring(i), 2)].colorChange;
+            cellColoursBuffer[i] = ruleArray[parseInt(determineStateBitstring(i), 2)].colorChange;
+        }
+        cellColours = cellColoursBuffer;
+        if (shouldExit) {
+            clearInterval(redraw);
         }
     }, 1000)
     
-})();
+};
+
+main();
