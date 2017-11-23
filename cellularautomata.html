@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="./css/index.css">
     </head>
     <body>
         <div id="cellSpace"></div>
         <div id="configuration">
+            <h2>Configuration</h2>
             <label>Seed (0-255)</label>
                 <br>
                 <input id="seedInput"></input>
@@ -22,25 +24,4 @@
         <script src="cellAutomata.js"></script>
         <script src="userInput.js"></script>
     </body>
-    <style>
-
-        #cellSpace {
-            line-height: 10px;
-            display: inline-block;
-        }
-        .cellular-automaton {
-            width: 10px;
-            height: 10px;
-            display: inline-block;
-            background-color: white;
-        }
-
-        #configuration {
-            display: inline-block;
-            position: relative;
-            bottom: 350px;
-            left: 100px;
-        }
-    </style>
-    
 </html>

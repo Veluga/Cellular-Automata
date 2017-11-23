@@ -54,7 +54,7 @@ function generateCells() {
         newCell.className = 'cellular-automaton';
         newCell.id = 'cell' + i;
         cellSpace.appendChild(newCell);
-        if (i%80 === 0 && i > 0) {
+        if (i%80 === 0 && i > 0 && i > 80 || i === 79) {
             let breakChar = document.createElement('BR')
             cellSpace.appendChild(breakChar)} 
     }
@@ -75,7 +75,6 @@ function determineStateBitstring(index) {
 }
 
 function main() {
-    // Should be user input
     translateDecimalToRuleString(seed);
     if(!cellColours[0]) {
         generateCells();
@@ -83,7 +82,6 @@ function main() {
     setInitialColors();
 
     const ruleArrayReversed = ruleArray.reverse();
-    console.log(ruleArrayReversed)
     let redraw = setInterval(function() {
         for (let i = 0, len = cellColours.length; i < len; i++) {
             document.getElementById('cell' + i).style.backgroundColor = colorTranslation[cellColours[i]];
